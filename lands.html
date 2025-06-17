@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Lands for Reform | Land Reform</title>
+    <link rel="stylesheet" href="land.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Loading Available Lands...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Land Reform</h1>
+            <nav>
+                <button class="btn-ghost" onclick="window.history.back()">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Home
+                </button>
+                <!-- Mobile Filter Toggle -->
+                <button class="mobile-filter-toggle" id="showFilterBtn">
+                    <i class="fas fa-filter"></i>
+                    Filters
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="breadcrumb">
+                    <span>Home</span>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Available Lands</span>
+                </div>
+                <h1 class="hero-title">Available Lands for Reform</h1>
+                <p class="hero-subtitle">Discover lands ready for cleanup and transformation. Each project contributes to environmental restoration and community development.</p>
+                
+                <!-- Hero Stats -->
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" data-target="24">0</div>
+                            <div class="stat-label">Available Lands</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-city"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" data-target="3">0</div>
+                            <div class="stat-label">Cities</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-area"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" data-target="15.7">0</div>
+                            <div class="stat-label">Total Hectares</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Search lands, locations...">
+            </div>
+        </div>
+    </section>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h2>Browse Available Lands</h2>
+            <p id="propertyCount">24 lands available</p>
+        </div>
+    </section>
+
+    <!-- Sort and Filter -->
+    <section class="sort-filter-section">
+        <div class="container">
+            <div class="sort-container">
+                <span>Sort by:</span>
+                <select id="sortSelect" class="sort-select">
+                    <option value="featured">Featured</option>
+                    <option value="area-asc">Area: Small to Large</option>
+                    <option value="area-desc">Area: Large to Small</option>
+                    <option value="revenue-asc">Revenue: Low to High</option>
+                    <option value="revenue-desc">Revenue: High to Low</option>
+                    <option value="priority">Priority Level</option>
+                </select>
+            </div>
+
+            <button class="filter-btn" id="showFilterBtnMobile">
+                <i class="fas fa-filter"></i>
+                <span>Filters</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Main Content with Sidebar Layout -->
+    <main class="main-content">
+        <div class="container">
+            <div class="properties-container">
+                <!-- Desktop Sidebar -->
+                <aside class="sidebar">
+                    <div class="sidebar-header">
+                        <h3>Filters</h3>
+                        <button class="reset-btn" id="resetDesktopFiltersBtn">Reset All</button>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h4>Land Type</h4>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="desktop-land-type" value="government"> Government Property</label>
+                            <label><input type="checkbox" name="desktop-land-type" value="private"> Private Property</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>Location</h4>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="desktop-location" value="riyadh"> Riyadh</label>
+                            <label><input type="checkbox" name="desktop-location" value="jeddah"> Jeddah</label>
+                            <label><input type="checkbox" name="desktop-location" value="dammam"> Dammam</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>Status</h4>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="desktop-status" value="available"> Available</label>
+                            <label><input type="checkbox" name="desktop-status" value="under-review"> Under Review</label>
+                            <label><input type="checkbox" name="desktop-status" value="in-progress"> In Progress</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>Priority Level</h4>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="desktop-priority" value="high-priority"> High Priority</label>
+                            <label><input type="checkbox" name="desktop-priority" value="medium-priority"> Medium Priority</label>
+                            <label><input type="checkbox" name="desktop-priority" value="low-priority"> Low Priority</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>Expected Revenue Range</h4>
+                        <div class="price-range">
+                            <div class="range-labels">
+                                <span id="desktopMinPrice">SR 0</span>
+                                <span id="desktopMaxPrice">SR 2,500,000</span>
+                            </div>
+                            <input type="range" id="desktopPriceRange" min="0" max="2500000" value="2500000" class="range-slider">
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>Land Size</h4>
+                        <div class="radio-group">
+                            <label><input type="radio" name="desktop-land-size" value="all" checked> All Sizes</label>
+                            <label><input type="radio" name="desktop-land-size" value="small"> Under 2 hectares</label>
+                            <label><input type="radio" name="desktop-land-size" value="medium"> 2-5 hectares</label>
+                            <label><input type="radio" name="desktop-land-size" value="large"> Over 5 hectares</label>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-block">Apply Filters</button>
+                </aside>
+
+                <!-- Land Listings -->
+                <div class="property-listings">
+                    <div class="property-grid" id="propertyGrid">
+                        <!-- Land cards will be inserted here by JavaScript -->
+                    </div>
+
+                    <!-- No Results Message -->
+                    <div class="no-results" id="noResults">
+                        <h3>No lands found</h3>
+                        <p>Try adjusting your filters or search criteria</p>
+                        <button class="btn btn-primary" id="resetNoResultsBtn">Reset Filters</button>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination" id="pagination">
+                        <button class="pagination-btn prev-btn" id="prevPageBtn">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="page-numbers" id="pageNumbers">
+                            <!-- Page numbers will be inserted here by JavaScript -->
+                        </div>
+                        <button class="pagination-btn next-btn" id="nextPageBtn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Filter Sidebar -->
+    <div class="filter-sidebar" id="filterSidebar">
+        <div class="filter-header">
+            <h3>Filters</h3>
+            <button class="close-btn" id="closeSidebarBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="filter-content">
+            <div class="filter-section">
+                <h4>Land Type</h4>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="land-type" value="government"> Government Property</label>
+                    <label><input type="checkbox" name="land-type" value="private"> Private Property</label>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h4>Location</h4>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="location" value="riyadh"> Riyadh</label>
+                    <label><input type="checkbox" name="location" value="jeddah"> Jeddah</label>
+                    <label><input type="checkbox" name="location" value="dammam"> Dammam</label>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h4>Status</h4>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="status" value="available"> Available</label>
+                    <label><input type="checkbox" name="status" value="under-review"> Under Review</label>
+                    <label><input type="checkbox" name="status" value="in-progress"> In Progress</label>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h4>Priority Level</h4>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="priority" value="high-priority"> High Priority</label>
+                    <label><input type="checkbox" name="priority" value="medium-priority"> Medium Priority</label>
+                    <label><input type="checkbox" name="priority" value="low-priority"> Low Priority</label>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h4>Expected Revenue Range</h4>
+                <div class="price-range">
+                    <div class="range-labels">
+                        <span id="minPrice">SR 0</span>
+                        <span id="maxPrice">SR 2,500,000</span>
+                    </div>
+                    <input type="range" id="priceRange" min="0" max="2500000" value="2500000" class="range-slider">
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h4>Land Size</h4>
+                <div class="radio-group">
+                    <label><input type="radio" name="land-size" value="all" checked> All Sizes</label>
+                    <label><input type="radio" name="land-size" value="small"> Under 2 hectares</label>
+                    <label><input type="radio" name="land-size" value="medium"> 2-5 hectares</label>
+                    <label><input type="radio" name="land-size" value="large"> Over 5 hectares</label>
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-block" id="resetFiltersBtn">Reset Filters</button>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <div class="cta-text">
+                    <h2>Ready to Make a Difference?</h2>
+                    <p>Join our mission to transform abandoned and neglected lands into clean, productive spaces. Submit your land for evaluation and become part of the environmental solution.</p>
+                    
+                    <div class="cta-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Environmental Impact</h4>
+                                <p>Contribute to ecosystem restoration</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Revenue Sharing</h4>
+                                <p>Earn from your land transformation</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Professional Service</h4>
+                                <p>Expert guidance throughout the process</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cta-action">
+                    <button class="btn-white cta-btn" onclick="window.location.href='add-land.html'">
+                        <i class="fas fa-plus"></i>
+                        Add Your Land
+                    </button>
+                    <p class="cta-note">Free evaluation and consultation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overlay for mobile filter -->
+    <div class="overlay" id="overlay"></div>
+
+    <script src="land.js"></script>
+</body>
+</html>
